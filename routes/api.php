@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\MovieController;
+use App\Http\Controllers\API\MovieGenreController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('genres', [MovieGenreController::class, 'all']);
+Route::get('movies', [MovieController::class, 'getAll']);
