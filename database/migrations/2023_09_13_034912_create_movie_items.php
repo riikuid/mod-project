@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('movie_items', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('movies_id');
+            $table->string('title');
+            $table->bigInteger('duration');
             $table->string('url');
             $table->softDeletes();
             $table->timestamps();

@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::resource('genre', MovieGenreController::class);
         Route::resource('movie', MovieController::class);
-        Route::resource('movie.item', MovieItemController::class)->shallow()->only([
+        Route::resource('movie.detail', MovieItemController::class)->shallow()->only([
             'index', 'create', 'store', 'destroy'
         ]);;
     });

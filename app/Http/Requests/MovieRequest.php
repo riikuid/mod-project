@@ -27,7 +27,6 @@ class MovieRequest extends FormRequest
             'files' => 'required|image',
             'genres_id' => 'required|integer',
             'description' => 'required',
-            'duration' => 'required|integer',
             'release_year' => 'required|integer',
         ];
     }
@@ -39,8 +38,6 @@ class MovieRequest extends FormRequest
             'title.max' => 'Judul tidak boleh lebih dari 255 karakter.',
             'files.required' => 'Poster film tidak boleh kosong',
             'description.required' => 'Deskripsi harus diisi.',
-            'duration.required' => 'Durasi harus diisi.',
-            'duration.integer' => 'Durasi harus berupa angka.',
             'release_year.required' => 'Tahun rilis harus diisi.',
             'release_year.integer' => 'Tahun rilis harus berupa angka.',
             'genres_id.required' => 'Genre harus dipilih.',

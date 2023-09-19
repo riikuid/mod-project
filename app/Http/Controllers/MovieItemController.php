@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MovieItemRequest;
 use App\Models\Movie;
 use App\Models\MovieItem;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class MovieItemController extends Controller
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
-                    <form class="inline-block" action="' . route('dashboard.item.destroy', $item->id) . '" method="POST">
+                    <form class="inline-block" action="' . route('dashboard.detail.destroy', $item->id) . '" method="POST">
                     <button class="border border-red-500 bg-red-500 text-white rounded-md px-2 py-1 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline" >
                         Hapus
                     </button>
@@ -31,27 +32,43 @@ class MovieItemController extends Controller
                 ->editColumn('url', function ($item) {
                     return '<video width="320" height="240" controls><source src="' . $item->url . '" type="video/mp4"></video>';
                 })
+                ->editColumn('duration', function ($item) {
+                    return '' . $item->duration . ' menit';
+                })
                 ->rawColumns(['action', 'url'])
                 ->make();
         }
 
-        return view('pages.dashboard.item.index', compact('movie'));
+        return view('pages.dashboard.detail.index', compact('movie'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Movie $movie)
     {
-        //
+        return view('pages.dashboard.detail.create', compact('movie'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MovieItemRequest $request, Movie $movie)
     {
-        //
+        $file = $request->file('file');
+
+        if ($request->hasFile('file')) {
+            $path = $file->store('public/movieItem');
+
+            MovieItem::create([
+                'movies_id' => $movie->id,
+                'title' => $request->title,
+                'duration' => $request->duration,
+                'url' => $path,
+            ]);
+        }
+
+        return redirect()->route('dashboard.movie.detail.index', $movie->id);
     }
 
     /**
@@ -84,6 +101,6 @@ class MovieItemController extends Controller
     public function destroy(MovieItem $item)
     {
         $item->delete();
-        return redirect()->route('dashboard.movie.item.index');
+        return redirect()->route('dashboard.movie.detail.index');
     }
 }

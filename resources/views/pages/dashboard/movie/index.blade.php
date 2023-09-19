@@ -34,11 +34,6 @@
 
                     },
                     {
-                        data: 'duration',
-                        name: 'duration + menit'
-
-                    },
-                    {
                         data: 'release_year',
                         name: 'release_year'
 
@@ -72,7 +67,6 @@
                                 <th>Poster</th>
                                 <th>Judul</th>
                                 <th>Genre</th>
-                                <th>Durasi</th>
                                 <th>Rilis</th>
                                 <th>Aksi</th>
                             </tr>

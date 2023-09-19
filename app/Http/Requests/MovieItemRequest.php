@@ -23,7 +23,20 @@ class MovieItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'files.*' => 'required|mimetypes:video/mp4'
+            'title' => 'required|max:255',
+            'duration' => 'required|integer',
+            'file.*' => 'required|mimetypes:video/*'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Judul harus diisi.',
+            'title.max' => 'Judul tidak boleh lebih dari 255 karakter.',
+            'duration.required' => 'Durasi harus diisi.',
+            'duration.integer' => 'Durasi harus berupa angka.',
+            'files.required' => 'Video tidak boleh kosong',
         ];
     }
 }

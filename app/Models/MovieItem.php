@@ -13,6 +13,8 @@ class MovieItem extends Model
 
     protected $fillable = [
         'movies_id',
+        'title',
+        'duration',
         'url',
     ];
 

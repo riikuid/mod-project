@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->longText('description');
             $table->bigInteger('genres_id');
-            $table->bigInteger('duration');
             $table->string('url_poster');
             $table->year('release_year');
             $table->softDeletes();
