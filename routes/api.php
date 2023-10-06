@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\ArticleController;
+use App\Http\Controllers\API\CarStatusController;
 use App\Http\Controllers\API\MovieController;
 use App\Http\Controllers\API\MovieGenreController;
 use Illuminate\Http\Request;
@@ -22,3 +24,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('genres', [MovieGenreController::class, 'all']);
 Route::get('movies', [MovieController::class, 'getAll']);
+
+Route::get('status', [CarStatusController::class, 'all']);
+Route::post('update-status', [CarStatusController::class, 'update']);
+
+Route::get('articles', [ArticleController::class, 'all']);

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CarStatusController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenreController;
@@ -26,8 +28,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         Route::resource('genre', MovieGenreController::class);
         Route::resource('movie', MovieController::class);
+        Route::resource('article', ArticleController::class);
         Route::resource('movie.detail', MovieItemController::class)->shallow()->only([
             'index', 'create', 'store', 'destroy'
         ]);;
+        Route::resource('car-status', CarStatusController::class)->shallow()->only([
+            'index', 'edit', 'update'
+        ]);
     });
 });

@@ -58,14 +58,16 @@ class MovieItemController extends Controller
         $file = $request->file('file');
 
         if ($request->hasFile('file')) {
-            $path = $file->store('public/movieItem');
+            $path = $file->store('public/movie/item');
 
-            MovieItem::create([
-                'movies_id' => $movie->id,
-                'title' => $request->title,
-                'duration' => $request->duration,
-                'url' => $path,
-            ]);
+            MovieItem::create(
+                [
+                    'movies_id' => $movie->id,
+                    'title' => $request->title,
+                    'duration' => $request->duration,
+                    'url' => $path,
+                ]
+            );
         }
 
         return redirect()->route('dashboard.movie.detail.index', $movie->id);

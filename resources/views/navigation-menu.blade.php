@@ -15,6 +15,10 @@
                     <x-nav-link href="{{ route('dashboard.index') }}" :active="request()->routeIs('dashboard.index')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('dashboard.car-status.index') }}" :active="request()->routeIs('dashboard.car-status.index')">
+                        {{ __('Car Status') }}
+                    </x-nav-link>
+
                     <div class="hidden sm:flex sm:items-center">
                         <x-dropdown align="right">
                             <x-slot name="trigger">
@@ -46,11 +50,9 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
-
-
-
-
-
+                    <x-nav-link href="{{ route('dashboard.article.index') }}" :active="request()->routeIs('dashboard.article.index')">
+                        {{ __('Article') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -188,6 +190,12 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link href="{{ route('dashboard.index') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('dashboard.article.index') }}" :active="request()->routeIs('dashboard.article.index')">
+                {{ __('Article') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link href="{{ route('dashboard.car-status.index') }}" :active="request()->routeIs('dashboard.car-status.index')">
+                {{ __('Car Status') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link href="{{ route('dashboard.genre.index') }}" :active="request()->routeIs('dashboard.genre.index')">
                 {{ __('Movie Genre') }}
