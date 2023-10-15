@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MusicRequest;
+use App\Models\Music;
+use App\Models\Singer;
 use Illuminate\Http\Request;
 
-class ArtistController extends Controller
+class MusicController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,9 +28,19 @@ class ArtistController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(MusicRequest $request)
     {
-        //
+        $singer = Singer::where('id', $request->singers_id);
+        $pathPoster = $request->file('poster')->store("public/music/$singer->name");
+        $pathMusic = $request->file('music')->store("public/music/$singer->name");
+
+        Music::create([
+            'title' => $request->title,
+            'singers_id' => $request->singers_id,
+            'duration' => $request->duration,
+            'url_poster' => $pathPoster,
+            'url_music' => $pathMusic,
+        ]);
     }
 
     /**
@@ -57,8 +70,8 @@ class ArtistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Music $music)
     {
-        //
+        $music->delete();
     }
 }

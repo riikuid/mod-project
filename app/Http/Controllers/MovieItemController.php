@@ -39,7 +39,7 @@ class MovieItemController extends Controller
                 ->make();
         }
 
-        return view('pages.dashboard.detail.index', compact('movie'));
+        return view('pages.dashboard.detail-movie.index', compact('movie'));
     }
 
     /**
@@ -47,7 +47,7 @@ class MovieItemController extends Controller
      */
     public function create(Movie $movie)
     {
-        return view('pages.dashboard.detail.create', compact('movie'));
+        return view('pages.dashboard.detail-movie.create', compact('movie'));
     }
 
     /**

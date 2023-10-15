@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {!! __('Movie &raquo; Create') !!}
+            {!! __('Music &raquo; ' . $singer->name . '&raquo; Add Music') !!}
         </h2>
     </x-slot>
 
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 @endif
-                <form class="w-full" action="{{ route('dashboard.movie.store') }}" method="post"
+                <form class="w-full" action="{{ route('dashboard.singer.detail.store', $singer->id) }}" method="post"
                     enctype="multipart/form-data">
                     @csrf
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -35,7 +35,18 @@
                             </label>
                             <input value="{{ old('title') }}" name="title"
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name" type="text" placeholder="Movie Title">
+                                id="grid-last-name" type="text" placeholder="Music Title">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                for="grid-last-name">
+                                Poster Musik
+                            </label>
+                            <input accept="image/*" value="{{ old('poster') }}" name="poster"
+                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                id="grid-last-name" type="file" placeholder="Poster Movie">
                         </div>
                     </div>
                     {{-- <div class="flex flex-wrap -mx-3 mb-6">
@@ -58,58 +69,27 @@
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                 for="grid-last-name">
-                                Genre
+                                Nama Penyanyi
                             </label>
-                            <select name="genres_id"
+                            <select name="singers_id"
                                 class="select-dd appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                 id="grid-last-name">
-                                <option value="" disabled selected>Pilih Genre</option>
-                                @foreach ($genres as $genre)
-                                    <option value="{{ $genre->id }}">{{ $genre->name }}</option>
-                                @endforeach
+                                <option value="{{ $singer->id }}" selected>{{ $singer->name }}</option>
                             </select>
 
                         </div>
                     </div>
 
+
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                 for="grid-last-name">
-                                Cover Depan
+                                File Musik
                             </label>
-                            <input accept="image/*" value="{{ old('files') }}" name="files"
+                            <input accept="audio/*" value="{{ old('music') }}" name="music"
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name" type="file" placeholder="Cover Movie">
-                        </div>
-                    </div>
-
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
-                                Tahun Rilis
-                            </label>
-                            <input value="{{ old('release_year') }}" name="release_year"
-                                class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                id="grid-last-name" type="text" placeholder="Release Year">
-                        </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-6">
-                        <div class="w-full px-3">
-                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-last-name">
-                                Deskripsi
-                            </label>
-                            {{-- <textarea name="description" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="Product Description">{{ old('description') }}</textarea> --}}
-                            <div class="w-full mb-4">
-
-                                <label for="description" class="sr-only">Description</label>
-                                <textarea id="description" name="description" rows="8"
-                                    class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                    placeholder="Write an description...">{{ old('description') }}</textarea>
-
-                            </div>
+                                id="grid-last-name" type="file" placeholder="File Musik">
                         </div>
                     </div>
 
@@ -117,7 +97,7 @@
                         <div class="w-full px-3 text-right">
                             <button type="submit"
                                 class=" shadow-lg bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                Create Movie
+                                Add Music
                             </button>
                         </div>
                     </div>
@@ -126,36 +106,4 @@
         </div>
     </div>
 
-
-    <script>
-        jQuery(document).ready(function() {
-            jQuery('.select-dd').select2(
-
-            );
-        });
-    </script>
-    <style>
-
-    </style>
-    {{-- <style>
-        Tema Kustom Select2
-        .select2-container {
-            width: 100%;
-
-        }
-
-        .select2-selection__rendered {
-            background-color: #E5E7EB;
-            /* Warna latar belakang sesuai dengan desain Anda */
-            color: #4a5568;
-            /* Warna teks sesuai dengan desain Anda */
-            padding: 0.375rem 1rem;
-            border: 1px solid #e2e8f0;
-            /* Warna border sesuai dengan desain Anda */
-        }
-
-        .select2-selection__arrow {
-            border-color: #4a5568 transparent transparent transparent;
-        }
-    </style> --}}
 </x-app-layout>

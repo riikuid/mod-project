@@ -6,6 +6,10 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\MovieGenreController;
 use App\Http\Controllers\MovieItemController;
+use App\Http\Controllers\MusicArtistController;
+use App\Http\Controllers\SingerController;
+use App\Http\Controllers\SingerDetailController;
+use App\Models\MusicArtist;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,5 +39,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::resource('car-status', CarStatusController::class)->shallow()->only([
             'index', 'edit', 'update'
         ]);
+        Route::resource('singer', SingerController::class);
+        Route::resource('singer.detail', SingerDetailController::class);
+        // Route::post('artist.destroy-music', MusicArtistController::class, 'destroyMusic');
     });
 });

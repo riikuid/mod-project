@@ -1,8 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('List Genre') }}
-        </h2>
+        <div class="flex items-center">
+
+            <a href="{{ route('dashboard.movie.index') }}">
+                <h2 class="font-semibold text-xl text-gray-800 mr-1">
+                    {!! __('Movie') !!}
+                </h2>
+            </a>
+            <h2 class="font-regular text-xl text-gray-800">
+                {!! __(' &raquo; List Genre') !!}
+            </h2>
+        </div>
     </x-slot>
 
     <x-slot name="script">
