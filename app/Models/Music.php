@@ -15,11 +15,16 @@ class Music extends Model
     protected $fillable = [
         'title',
         'singers_id',
+        'duration',
         'url_music',
         'url_poster',
     ];
 
 
+    // public function singer()
+    // {
+    //     return $this->belongsTo(Singer::class, 'singers_id', 'id');
+    // }
     public function singer()
     {
         return $this->belongsTo(Singer::class, 'singers_id', 'id');

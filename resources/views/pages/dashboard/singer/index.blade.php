@@ -70,4 +70,40 @@
             </div>
         </div>
     </div>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script>
+        function Delete(id) {
+            var id = id;
+            var token = $("meta[name='csrf-token']").attr("content");
+
+            Swal.fire({
+                title: 'Yakin untuk menghapus?',
+                text: "Semua musik pada penyanyi ini akan ikut terhapus!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    jQuery.ajax({
+                        url: "/dashboard/singer/" + id,
+                        data: {
+                            "id": id,
+                            "_token": token
+                        },
+                        type: 'delete',
+
+                    })
+                    Swal.fire(
+                        'Deleted!',
+                        'Singer has been deleted.',
+                        'success'
+                    )
+                    location.reload();
+                    // document.getElementById(id).submit();
+                }
+            })
+        }
+    </script>
 </x-app-layout>

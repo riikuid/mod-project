@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->bigInteger('singers_id');
-            $table->bigInteger('duration');
+            $table->float('duration');
             $table->string('url_music');
             $table->string('url_poster');
             $table->softDeletes();

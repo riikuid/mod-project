@@ -11,7 +11,7 @@ class CarStatusController extends Controller
 {
     public function all()
     {
-        $status = CarStatus::find(1);
+        $status = CarStatus::first();
         if (!$status) {
             return ResponseFormatter::error(
                 null,
@@ -25,39 +25,44 @@ class CarStatusController extends Controller
         );
     }
 
-    public function update(Request $request)
+    public function perbarui(Request $request)
     {
         // dd($request);
-        $status = CarStatus::find(1);
-        $data = $request->json()->all();
-        // $data = [
-        //     'temperature' => $request->input('temperature'),
-        //     'origin' => $request->input('origin'),
-        //     'destination' => $request->input('destination'),
-        //     'next_station' => $request->input('next_station'),
-        // ];
-        dd($data);
+        $status = CarStatus::first();
+        // $data = $request->json()->all();
+        $data = [
+            'temperature' => $request->input('temperature'),
+            'origin' => $request->input('origin'),
+            'destination' => $request->input('destination'),
+            'next_station' => $request->input('next_station'),
+        ];
+        // dd($data);
 
 
-        if (!$status) {
-            return ResponseFormatter::error(
-                null,
-                'Data car status tidak ditemukan'
-            );
-        } else {
-            $status->update($data);
-            return ResponseFormatter::success(
-                $status,
-                'Data car status berhasil diperbarui'
-            );
-        }
+        // if (!$status) {
+        //     return ResponseFormatter::error(
+        //         null,
+        //         'Data car status tidak ditemukan'
+        //     );
+        // } else {
+        //     $status->update($data);
+        //     return ResponseFormatter::success(
+        //         $status,
+        //         'Data car status berhasil diperbarui'
+        //     );
+        // }
 
-        // $status->temperature = $request->input('temperature');
-        // $status->origin = $request->input('origin');
-        // $status->destination = $request->input('destination');
-        // $status->next_station = $request->input('next_station');
+        $status->temperature = $request->input('temperature');
+        $status->origin = $request->input('origin');
+        $status->destination = $request->input('destination');
+        $status->next_station = $request->input('next_station');
 
+        $status->save();
 
+        return ResponseFormatter::success(
+            $status,
+            'Data car status berhasil diperbarui'
+        );
         // dd($request->input('temperature'));
     }
 }

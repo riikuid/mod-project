@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Movie') }}
+            {{ __('All Music') }}
         </h2>
     </x-slot>
 
@@ -9,7 +9,6 @@
         <script>
             // AJAX DataTable
             var datatable = $('#crudTable').DataTable({
-                devug: true,
                 ajax: {
                     url: '{!! url()->current() !!}',
                 },
@@ -20,30 +19,30 @@
                     },
                     {
                         data: 'url_poster',
-                        name: 'url_poster'
-
+                        name: 'url_poster',
+                        width: '15%',
                     },
                     {
                         data: 'title',
-                        name: 'title'
+                        name: 'title',
 
                     },
                     {
-                        data: 'genre.name',
-                        name: 'genre.name',
-
+                        data: 'singer.name',
+                        name: 'singer.name',
+                        // width: '25%',
                     },
                     {
-                        data: 'release_year',
-                        name: 'release_year'
-
+                        data: 'duration',
+                        name: 'duration',
+                        // width: '25%',
                     },
                     {
                         data: 'action',
                         name: 'action',
                         orderable: false,
                         searchable: false,
-                        width: '20%'
+                        width: '15%'
                     },
                 ],
             });
@@ -53,13 +52,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="mb-10">
-                <a href="{{ route('dashboard.movie.create') }}"
+                <a href=" {{ route('dashboard.music.create') }} "
                     class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-lg">
-                    + Create Movie
-                </a>
-                <a href="{{ route('dashboard.genre.index') }}"
-                    class="mx-2 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded shadow-lg">
-                    List Genre
+                    + Add Singer
                 </a>
             </div>
             <div class="shadow overflow-hidden sm:rounded-md">
@@ -70,8 +65,8 @@
                                 <th>ID</th>
                                 <th>Poster</th>
                                 <th>Judul</th>
-                                <th>Genre</th>
-                                <th>Rilis</th>
+                                <th>Penyanyi</th>
+                                <th>Durasi</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>

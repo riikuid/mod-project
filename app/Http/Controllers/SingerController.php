@@ -26,12 +26,16 @@ class SingerController extends Controller
                     href="' . route('dashboard.singer.detail.index', $item->id) . '">
                     Detail
                     </a>
-                    <form class="inline-block" action="' . route('dashboard.singer.destroy', $item->id) . '" method="POST">
-                <button class="border border-red-500 bg-red-500 text-white rounded-md px-2 py-1 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline" >
-                    Hapus
-                </button>
-                    ' . method_field('delete') . csrf_field() . '
-            </form>';
+                    <button onclick="Delete(' . $item->id . ')" id="' . $item->id . '" class="bg-red-500 text-white rounded-md px-2 py-1 m-2 ml-4">
+                                Hapus
+                            </button>
+                            ';
+                    //         <form class="inline-block" action="' . route('dashboard.singer.destroy', $item->id) . '" method="POST">
+                    //     <button class="border border-red-500 bg-red-500 text-white rounded-md px-2 py-1 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline" >
+                    //         Hapus
+                    //     </button>
+                    //         ' . method_field('delete') . csrf_field() . '
+                    // </form>
                 })
                 ->editColumn('url_profile', function ($item) {
                     return '<img style="width: 70px; height: 70px; object-fit: cover;" src="' . Storage::url($item->url_profile) . '"/>';
@@ -60,7 +64,7 @@ class SingerController extends Controller
      */
     public function store(SingerRequest $request)
     {
-        $path = $request->file('file')->store("public/music/$request->name");
+        $path = $request->file('file')->store("public/music/$request->name/profile");
 
         Singer::create([
             'name' => $request->name,
@@ -100,6 +104,9 @@ class SingerController extends Controller
     public function destroy(Singer $singer)
     {
         $singer->delete();
+        $singer->musics()->delete();
+        // $musics = Music::where('singers_id', $singer->id);
+
         return redirect()->route('dashboard.singer.index');
     }
 }

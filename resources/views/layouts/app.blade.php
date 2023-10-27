@@ -11,16 +11,18 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/node_modules/sweetalert2/dist/sweetalert2.min.css">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+    {{-- <script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script> --}}
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
     <!-- Import jQuery from CDN -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-
-
+    {{-- SWEET ALERT CDN --}}
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
     <!--- Tambahkan setelah app.js --->
     {{-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>s --}}
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>

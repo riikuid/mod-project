@@ -21,7 +21,8 @@
                     },
                     {
                         data: 'url_poster',
-                        name: 'url_poster'
+                        name: 'url_poster',
+                        width: '15%',
 
                     },
                     {
@@ -40,7 +41,7 @@
                         name: 'action',
                         orderable: false,
                         searchable: false,
-                        width: '20%'
+                        width: '15%'
                     },
                 ],
             });

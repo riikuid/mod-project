@@ -4,6 +4,8 @@ use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\CarStatusController;
 use App\Http\Controllers\API\MovieController;
 use App\Http\Controllers\API\MovieGenreController;
+use App\Http\Controllers\API\MusicController;
+use App\Http\Controllers\API\SingerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +28,9 @@ Route::get('genres', [MovieGenreController::class, 'all']);
 Route::get('movies', [MovieController::class, 'getAll']);
 
 Route::get('status', [CarStatusController::class, 'all']);
-Route::post('update-status', [CarStatusController::class, 'update']);
+Route::post('status', [CarStatusController::class, 'perbarui']);
 
 Route::get('articles', [ArticleController::class, 'all']);
+
+Route::get('singers', [SingerController::class, 'all']);
+Route::get('musics', [MusicController::class, 'all']);

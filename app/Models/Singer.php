@@ -17,6 +17,6 @@ class Singer extends Model
 
     public function musics()
     {
-        return $this->hasMany(Musicc::class, 'singers_id', 'id');
+        return $this->hasMany(Music::class, 'singers_id', 'id');
     }
 }

@@ -53,21 +53,42 @@ class MovieItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // public function store(MovieItemRequest $request, Movie $movie)
+    // {
+    //     $file = $request->file('file');
+
+    //     if ($request->hasFile('file')) {
+    //         $path = $file->store('public/movie/item');
+
+    //         MovieItem::create(
+    //             [
+    //                 'movies_id' => $movie->id,
+    //                 'title' => $request->title,
+    //                 'duration' => $request->duration,
+    //                 'url' => $path,
+    //             ]
+    //         );
+    //     }
+
+    //     return redirect()->route('dashboard.movie.detail.index', $movie->id);
+    // }
     public function store(MovieItemRequest $request, Movie $movie)
     {
-        $file = $request->file('file');
-
         if ($request->hasFile('file')) {
-            $path = $file->store('public/movie/item');
+            $path = $request->file('file')->store('public/movie/item');
 
-            MovieItem::create(
-                [
-                    'movies_id' => $movie->id,
-                    'title' => $request->title,
-                    'duration' => $request->duration,
-                    'url' => $path,
-                ]
-            );
+            MovieItem::create([
+                'movies_id' => $movie->id,
+                'title' => $request->title,
+                'duration' => $request->duration,
+                'url' => $path,
+            ]);
+
+            //     return response()->json([
+            //         'success' => true,
+            //         'message' => 'File uploaded successfully.',
+            //         'movie_item_id' => $movie->id,
+            //     ]);
         }
 
         return redirect()->route('dashboard.movie.detail.index', $movie->id);
