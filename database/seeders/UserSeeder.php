@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'admin',
-            'email' => 'fahmi@admin.com',
+            'email' => 'fahmibambe@gmail.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$sYyAXfexl/86wbvAjU1f/exdb4u5UdfrIioAMTS8qnXxU9F54z0ra', // password
             'two_factor_secret' => null,

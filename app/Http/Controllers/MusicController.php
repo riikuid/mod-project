@@ -59,10 +59,9 @@ class MusicController extends Controller
     public function store(MusicRequest $request)
     {
         $singer = Singer::where('id', $request->singers_id)->first();
-        $singerFolder = Str::replace(' ', '-', strtolower($singer->name));
 
-        $pathPoster = $request->file('poster')->store("public/music/$singerFolder");
-        $pathMusic = $request->file('music')->store("public/music/$singerFolder");
+        $pathPoster = $request->file('poster')->store("public/music");
+        $pathMusic = $request->file('music')->store("public/music");
 
         $audio = new Mp3Info($request->file('music'));
         // dd($audio->duration);

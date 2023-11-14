@@ -20,8 +20,9 @@
                         width: '5%'
                     },
                     {
-                        data: 'url',
-                        name: 'url'
+                        data: 'thumbnail',
+                        name: 'thumbnail',
+                        width: '25%',
 
                     },
                     {
@@ -164,7 +165,7 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Video</th>
+                                <th>Thumbnail</th>
                                 <th>Sub Judul</th>
                                 <th>Durasi</th>
                                 <th>Aksi</th>

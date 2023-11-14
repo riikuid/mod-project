@@ -64,7 +64,7 @@ class SingerController extends Controller
      */
     public function store(SingerRequest $request)
     {
-        $path = $request->file('file')->store("public/music/$request->name/profile");
+        $path = $request->file('file')->store("public/music");
 
         Singer::create([
             'name' => $request->name,

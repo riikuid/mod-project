@@ -25,8 +25,9 @@ class MovieItemRequest extends FormRequest
         return [
             'title' => 'required|max:255',
             'duration' => 'required|integer',
-            // 'file.*' => 'required|mimetypes:video/*'
-            'path' => 'required'
+            'thumbnail' => 'required|image',
+            'file.*' => 'required|mimetypes:video/*'
+            // 'path' => 'required'
         ];
     }
 
@@ -37,8 +38,8 @@ class MovieItemRequest extends FormRequest
             'title.max' => 'Judul tidak boleh lebih dari 255 karakter.',
             'duration.required' => 'Durasi harus diisi.',
             'duration.integer' => 'Durasi harus berupa angka.',
-            'path.required' => 'Video tidak boleh kosong.',
-            // 'files.required' => 'Video tidak boleh kosong',
+            'thumbnail.required' => 'Thumbnail tidak boleh kosong.',
+            'files.required' => 'Video tidak boleh kosong',
         ];
     }
 }

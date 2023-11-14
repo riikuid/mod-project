@@ -14,6 +14,7 @@ class MovieItem extends Model
     protected $fillable = [
         'movies_id',
         'title',
+        'thumbnail',
         'duration',
         'url',
     ];
@@ -21,5 +22,10 @@ class MovieItem extends Model
     public function getUrlAttribute($url)
     {
         return config('app.url') . Storage::url($url);
+    }
+
+    public function movie()
+    {
+        return $this->belongsTo(Movie::class, 'movies_id', 'id');
     }
 }

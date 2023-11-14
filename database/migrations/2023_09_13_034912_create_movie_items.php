@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('movies_id');
             $table->string('title');
+            $table->longText('thumbnail');
             $table->bigInteger('duration');
             $table->string('url');
             $table->softDeletes();

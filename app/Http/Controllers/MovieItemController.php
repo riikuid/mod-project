@@ -32,10 +32,13 @@ class MovieItemController extends Controller
                 ->editColumn('url', function ($item) {
                     return '<video width="320" height="240" controls><source src="' . $item->url . '" type="video/mp4"></video>';
                 })
+                ->editColumn('thumbnail', function ($item) {
+                    return '<img width="320" height="240"><source src="' . $item->thumbnail . '"></img>';
+                })
                 ->editColumn('duration', function ($item) {
                     return '' . $item->duration . ' menit';
                 })
-                ->rawColumns(['action', 'url'])
+                ->rawColumns(['action', 'url', 'thumbnail'])
                 ->make();
         }
 
@@ -53,42 +56,21 @@ class MovieItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    // public function store(MovieItemRequest $request, Movie $movie)
-    // {
-    //     $file = $request->file('file');
-
-    //     if ($request->hasFile('file')) {
-    //         $path = $file->store('public/movie/item');
-
-    //         MovieItem::create(
-    //             [
-    //                 'movies_id' => $movie->id,
-    //                 'title' => $request->title,
-    //                 'duration' => $request->duration,
-    //                 'url' => $path,
-    //             ]
-    //         );
-    //     }
-
-    //     return redirect()->route('dashboard.movie.detail.index', $movie->id);
-    // }
     public function store(MovieItemRequest $request, Movie $movie)
     {
         if ($request->hasFile('file')) {
-            $path = $request->file('file')->store('public/movie/item');
+            $file = $request->file('file');
+            $pathMovie = $file->store('public/movie');
+
+            $pathThumbnail = $request->file('thumbnail')->store('public/movie');
 
             MovieItem::create([
                 'movies_id' => $movie->id,
                 'title' => $request->title,
+                'thumbnail' => $pathThumbnail,
                 'duration' => $request->duration,
-                'url' => $path,
+                'url' => $pathMovie,
             ]);
-
-            //     return response()->json([
-            //         'success' => true,
-            //         'message' => 'File uploaded successfully.',
-            //         'movie_item_id' => $movie->id,
-            //     ]);
         }
 
         return redirect()->route('dashboard.movie.detail.index', $movie->id);
