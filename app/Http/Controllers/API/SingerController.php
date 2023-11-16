@@ -54,7 +54,7 @@ class SingerController extends Controller
 
         return ResponseFormatter::success(
             $singers,
-            'Data genre berhasil diambil'
+            'Data singer berhasil diambil'
         );
     }
 }
