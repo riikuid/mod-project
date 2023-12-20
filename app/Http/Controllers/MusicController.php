@@ -61,7 +61,9 @@ class MusicController extends Controller
         $singer = Singer::where('id', $request->singers_id)->first();
 
         $pathPoster = $request->file('poster')->store("public/music");
+        $pathPosterForDatabase = str_replace('public', 'storage', $pathPoster);
         $pathMusic = $request->file('music')->store("public/music");
+        $pathMusicForDatabase = str_replace('public', 'storage', $pathMusic);
 
         $audio = new Mp3Info($request->file('music'));
         // dd($audio->duration);
@@ -70,8 +72,8 @@ class MusicController extends Controller
             'title' => $request->title,
             'singers_id' => $request->singers_id,
             'duration' => $audio->duration,
-            'url_poster' => $pathPoster,
-            'url_music' => $pathMusic,
+            'url_poster' => $pathPosterForDatabase,
+            'url_music' => $pathMusicForDatabase,
         ]);
 
         return redirect()->route('dashboard.music.index');
