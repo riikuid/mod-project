@@ -62,13 +62,14 @@ class MovieController extends Controller
     public function store(MovieRequest $request)
     {
         $path = $request->file('files')->store('public/movie/cover');
+        $pathForDatabase = str_replace('public', 'storage', $path);
 
         Movie::create([
             'title' => $request->title,
             'description' => $request->description,
             'genres_id' => $request->genres_id,
             'release_year' => $request->release_year,
-            'url_poster' => $path,
+            'url_poster' => $pathForDatabase,
         ]);
 
         return redirect()->route('dashboard.movie.index');

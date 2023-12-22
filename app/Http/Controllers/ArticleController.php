@@ -46,7 +46,7 @@ class ArticleController extends Controller
                     return $shortDescription . '...';
                 })
                 ->editColumn('thumbnail', function ($item) {
-                    return '<img style="max-width: 150px;" src="' . Storage::url($item->thumbnail) . '"/>';
+                    return '<img style="max-width: 150px;" src="' . url($item->thumbnail) . '"/>';
                 })
                 ->rawColumns(['action', 'thumbnail', 'description'])
                 ->make();
@@ -69,11 +69,12 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $path = $request->file('file')->store('public/article');
+        $pathForDatabase = str_replace('public', 'storage', $path);
 
         Article::create([
             'title' => $request->title,
             'description' => $request->description,
-            'thumbnail' => $path,
+            'thumbnail' => $pathForDatabase,
         ]);
 
         return redirect()->route('dashboard.article.index');

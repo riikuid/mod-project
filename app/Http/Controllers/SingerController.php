@@ -65,10 +65,11 @@ class SingerController extends Controller
     public function store(SingerRequest $request)
     {
         $path = $request->file('file')->store("public/music");
+        $pathForDatabase = str_replace('public', 'storage', $path);
 
         Singer::create([
             'name' => $request->name,
-            'url_profile' => $path,
+            'url_profile' => $pathForDatabase,
         ]);
 
         return redirect()->route('dashboard.singer.index');

@@ -67,15 +67,17 @@ class MovieItemController extends Controller
         if ($request->hasFile('file')) {
             $file = $request->file('file');
             $pathMovie = $file->store('public/movie');
+            $pathMovieForDatabase = str_replace('public', 'storage', $pathMovie);
 
             $pathThumbnail = $request->file('thumbnail')->store('public/movie');
+            $pathThumbnailForDatabase = str_replace('public', 'storage', $pathThumbnail);
 
             MovieItem::create([
                 'movies_id' => $movie->id,
                 'title' => $request->title,
-                'thumbnail' => $pathThumbnail,
+                'thumbnail' => $pathThumbnailForDatabase,
                 'duration' => $request->duration,
-                'url' => $pathMovie,
+                'url' => $pathMovieForDatabase,
             ]);
         }
 
