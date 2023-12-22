@@ -23,7 +23,7 @@ class MovieController extends Controller
             return DataTables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
-                    <a class="inline-block border border-blue-500 bg-blue-500 text-white rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:bg-blue-800 focus:outline-none focus:shadow-outline"
+                    <a class="inline-block border border-indigo-600 bg-indigo-600 text-white rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:bg-blue-800 focus:outline-none focus:shadow-outline"
                     href="' . route('dashboard.movie.detail.index', $item->id) . '">
                     Detail
                     </a>

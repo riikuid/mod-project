@@ -18,7 +18,7 @@ class MusicController extends Controller
         if ($musics->isEmpty()) {
             return ResponseFormatter::error(
                 null,
-                'Data musik tidak ada',
+                'Data music tidak ada',
             );
         }
 
@@ -54,7 +54,7 @@ class MusicController extends Controller
 
         return ResponseFormatter::success(
             $musics,
-            'Data genre berhasil diambil'
+            'Data music berhasil diambil'
         );
     }
 }

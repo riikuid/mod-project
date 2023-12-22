@@ -37,13 +37,13 @@ class ArticleController extends Controller
                     $itemDescription = $item->description;
                     $words = explode(" ", $itemDescription); // Pecah teks menjadi array kata
 
-                    if (count($words) > 100) {
-                        $shortDescription = implode(" ", array_slice($words, 0, 100));
+                    if (count($words) > 20) {
+                        $shortDescription = implode(" ", array_slice($words, 0, 20));
                     } else {
                         // Jika ada 100 kata atau kurang, gunakan seluruh teks
                         $shortDescription = $itemDescription;
                     }
-                    return $shortDescription;
+                    return $shortDescription . '...';
                 })
                 ->editColumn('thumbnail', function ($item) {
                     return '<img style="max-width: 150px;" src="' . Storage::url($item->thumbnail) . '"/>';

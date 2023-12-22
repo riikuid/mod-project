@@ -15,6 +15,7 @@ class MovieGenreController extends Controller
     {
         $id = $request->id;
         $name = $request->input('name');
+
         $genres = MovieGenre::get();
 
         if ($genres->isEmpty()) {

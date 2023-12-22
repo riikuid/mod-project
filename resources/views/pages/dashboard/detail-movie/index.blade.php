@@ -153,12 +153,20 @@
                 </div>
             </div>
 
-            <div class="mb-10">
-                <a href="{{ route('dashboard.movie.detail.create', $movie->id) }}"
-                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-lg">
-                    + Add Video
-                </a>
-            </div>
+            @if ($item != null)
+                <div class="mb-10">
+                    <a class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded shadow-lg">
+                        + Add Video
+                    </a>
+                </div>
+            @else
+                <div class="mb-10">
+                    <a href="{{ route('dashboard.movie.detail.create', $movie->id) }}"
+                        class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-lg">
+                        + Add Video
+                    </a>
+                </div>
+            @endif
             <div class="shadow overflow-hidden sm:rounded-md">
                 <div class="px-4 py-5 bg-white sm:p-6">
                     <table id="crudTable">

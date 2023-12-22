@@ -50,7 +50,6 @@
                                 id="grid-last-name" type="file" placeholder="Cover Movie">
                         </div>
                     </div>
-
                     {{-- <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -71,7 +70,7 @@
                         <div class="w-full px-3">
                             <label
                                 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Description</label>
-                            <textarea name="description"
+                            <textarea name="description" style="height: 250px"
                                 class="block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">{!! old('description') !!}</textarea>
                         </div>
                     </div>
@@ -88,8 +87,5 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace('description');
-    </script>
+
 </x-app-layout>

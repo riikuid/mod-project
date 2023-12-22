@@ -12,7 +12,7 @@
             <div class="mb-10">
                 <a href="{{ route('dashboard.car-status.edit', $status->id) }}"
                     class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-lg">
-                    ✏️ UPDATE STATUS
+                    UPDATE STATUS MANUAL
                 </a>
             </div>
             <div class="bg-white overflow-hidden shadow sm:rounded-lg mb-10">
